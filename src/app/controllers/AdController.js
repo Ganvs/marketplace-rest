@@ -7,7 +7,7 @@ class AdController {
     const ads = await Ad.paginate({}, {
       page: req.query.page || 1,
       limit: 10,
-      populate: ['author']
+      populate: ['author'],
       sort: '-createdAt'
     })
 
