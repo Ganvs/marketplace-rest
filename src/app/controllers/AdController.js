@@ -2,7 +2,14 @@ const Ad = require('../models/Ad')
 
 class AdController {
   async index (req, res) {
-    const ads = await Ad.find()
+    // a função paginate limita a quantidade
+    // de registros por página
+    const ads = await Ad.paginate({}, {
+      page: req.query.page || 1,
+      limit: 10,
+      populate: ['author']
+      sort: '-createdAt'
+    })
 
     return res.json(ads)
   }
